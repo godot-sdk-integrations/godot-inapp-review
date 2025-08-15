@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		515DBA0925EE9E1E00187A4B /* SwiftClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515DBA0825EE9E1E00187A4B /* SwiftClass.swift */; };
+		90CAAA9924E71FF10013969F /* godot_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAA9824E71FF10013969F /* godot_plugin.mm */; };
+		90CAAAA424E724C50013969F /* inapp_review_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAAA324E724C50013969F /* inapp_review_plugin.mm */; };
+		94A1B0B2910D06DA0F4D3D3C /* Pods_inapp_review_plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		90CAAA9224E71FF10013969F /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1A3D1E30D9DC57319C20B62B /* Pods-godot_plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-godot_plugin.release.xcconfig"; path = "Target Support Files/Pods-godot_plugin/Pods-godot_plugin.release.xcconfig"; sourceTree = "<group>"; };
+		380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_inapp_review_plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		403D7C7BCFBA671DEF15AE95 /* Pods-godot_plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-godot_plugin.debug.xcconfig"; path = "Target Support Files/Pods-godot_plugin/Pods-godot_plugin.debug.xcconfig"; sourceTree = "<group>"; };
+		515DBA0825EE9E1E00187A4B /* SwiftClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftClass.swift; sourceTree = "<group>"; };
+		90CAAA9424E71FF10013969F /* libinapp_review_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libinapp_review_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		90CAAA9724E71FF10013969F /* godot_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = godot_plugin.h; sourceTree = "<group>"; };
+		90CAAA9824E71FF10013969F /* godot_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = godot_plugin.mm; sourceTree = "<group>"; };
+		90CAAAA324E724C50013969F /* inapp_review_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = inapp_review_plugin.mm; sourceTree = "<group>"; };
+		90CAAAA524E724D00013969F /* inapp_review_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inapp_review_plugin.h; sourceTree = "<group>"; };
+		AAE936A0178A8EA9BB753CEA /* Pods-inapp_review_plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inapp_review_plugin.debug.xcconfig"; path = "Target Support Files/Pods-inapp_review_plugin/Pods-inapp_review_plugin.debug.xcconfig"; sourceTree = "<group>"; };
+		D5F7A9D28867FD798F31BF3B /* Pods-inapp_review_plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-inapp_review_plugin.release.xcconfig"; path = "Target Support Files/Pods-inapp_review_plugin/Pods-inapp_review_plugin.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		90CAAA9124E71FF10013969F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				94A1B0B2910D06DA0F4D3D3C /* Pods_inapp_review_plugin.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		66EA7AD27171A8F93A267403 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				403D7C7BCFBA671DEF15AE95 /* Pods-godot_plugin.debug.xcconfig */,
+				1A3D1E30D9DC57319C20B62B /* Pods-godot_plugin.release.xcconfig */,
+				AAE936A0178A8EA9BB753CEA /* Pods-inapp_review_plugin.debug.xcconfig */,
+				D5F7A9D28867FD798F31BF3B /* Pods-inapp_review_plugin.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		90CAAA8B24E71FF10013969F = {
+			isa = PBXGroup;
+			children = (
+				90CAAA9624E71FF10013969F /* inapp_review */,
+				90CAAA9524E71FF10013969F /* Products */,
+				90CAAAA824E72A8A0013969F /* Frameworks */,
+				66EA7AD27171A8F93A267403 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		90CAAA9524E71FF10013969F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				90CAAA9424E71FF10013969F /* libinapp_review_plugin.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		90CAAA9624E71FF10013969F /* inapp_review */ = {
+			isa = PBXGroup;
+			children = (
+				90CAAA9724E71FF10013969F /* godot_plugin.h */,
+				90CAAA9824E71FF10013969F /* godot_plugin.mm */,
+				90CAAAA524E724D00013969F /* inapp_review_plugin.h */,
+				90CAAAA324E724C50013969F /* inapp_review_plugin.mm */,
+				515DBA0825EE9E1E00187A4B /* SwiftClass.swift */,
+			);
+			path = inapp_review;
+			sourceTree = "<group>";
+		};
+		90CAAAA824E72A8A0013969F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		90CAAA9324E71FF10013969F /* inapp_review_plugin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90CAAA9D24E71FF10013969F /* Build configuration list for PBXNativeTarget "inapp_review_plugin" */;
+			buildPhases = (
+				DD9BF3CC2255FDE9321FE7D1 /* [CP] Check Pods Manifest.lock */,
+				90CAAA9024E71FF10013969F /* Sources */,
+				90CAAA9124E71FF10013969F /* Frameworks */,
+				90CAAA9224E71FF10013969F /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = inapp_review_plugin;
+			productName = godot_plugin;
+			productReference = 90CAAA9424E71FF10013969F /* libinapp_review_plugin.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		90CAAA8C24E71FF10013969F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = Godot;
+				TargetAttributes = {
+					90CAAA9324E71FF10013969F = {
+						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1230;
+					};
+				};
+			};
+			buildConfigurationList = 90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "inapp_review_plugin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 90CAAA8B24E71FF10013969F;
+			productRefGroup = 90CAAA9524E71FF10013969F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				90CAAA9324E71FF10013969F /* inapp_review_plugin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD9BF3CC2255FDE9321FE7D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-inapp_review_plugin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		90CAAA9024E71FF10013969F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90CAAAA424E724C50013969F /* inapp_review_plugin.mm in Sources */,
+				515DBA0925EE9E1E00187A4B /* SwiftClass.swift in Sources */,
+				90CAAA9924E71FF10013969F /* godot_plugin.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		90CAAA9B24E71FF10013969F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		90CAAA9C24E71FF10013969F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		90CAAA9E24E71FF10013969F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAE936A0178A8EA9BB753CEA /* Pods-inapp_review_plugin.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/godot",
+					"$(SRCROOT)/godot/platform/ios",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/godot/bin",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-g",
+					"-DDEBUG",
+					"-DDEBUG_ENABLED",
+					"-DDEBUG_MEMORY_ALLOC",
+					"-DDISABLE_FORCED_INLINE",
+					"-DTYPED_METHOD_BIND",
+					"-fmodules",
+					"-fobjc-arc",
+					"-fmessage-length=0",
+					"-fno-strict-aliasing",
+					"-fdiagnostics-print-source-range-info",
+					"-fdiagnostics-show-category=id",
+					"-fdiagnostics-parseable-fixits",
+					"-fpascal-strings",
+					"-fblocks",
+					"-fvisibility=hidden",
+					"-MMD",
+					"-MT",
+					"-fno-exceptions",
+					"-Wno-ambiguous-macro",
+					"-Wall",
+					"-Werror=return-type",
+					"-DPTRCALL_ENABLED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fcxx-modules",
+					"-gdwarf-2",
+					"-O0",
+					"-DDEBUG_MEMORY_ALLOC",
+					"-DDISABLE_FORCED_INLINE",
+					"-D_DEBUG",
+					"-DDEBUG=1",
+					"-DDEBUG_ENABLED",
+					"-DVERSION_4_0",
+					"-DIOS_ENABLED",
+					"-DNEED_LONG_INT",
+					"-DLIBYUV_DISABLE_NEON",
+					"-DIPHONE_ENABLED",
+					"-DUNIX_ENABLED",
+					"-DCOREAUDIO_ENABLED",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "inapp_review/godot_plugin-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		90CAAA9F24E71FF10013969F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5F7A9D28867FD798F31BF3B /* Pods-inapp_review_plugin.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/godot",
+					"$(SRCROOT)/godot/platform/ios",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/godot/bin",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-fmodules",
+					"-fobjc-arc",
+					"-fmessage-length=0",
+					"-fno-strict-aliasing",
+					"-fdiagnostics-print-source-range-info",
+					"-fdiagnostics-show-category=id",
+					"-fdiagnostics-parseable-fixits",
+					"-fpascal-strings",
+					"-fblocks",
+					"-fvisibility=hidden",
+					"-MMD",
+					"-MT",
+					"-fno-exceptions",
+					"-Wno-ambiguous-macro",
+					"-Wall",
+					"-Werror=return-type",
+					"-DPTRCALL_ENABLED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-fcxx-modules",
+					"-O2",
+					"-ftree-vectorize",
+					"-DNDEBUG",
+					"-DNS_BLOCK_ASSERTIONS=1",
+					"-DVERSION_4_0",
+					"-DIOS_ENABLED",
+					"-DNEED_LONG_INT",
+					"-DLIBYUV_DISABLE_NEON",
+					"-DIPHONE_ENABLED",
+					"-DUNIX_ENABLED",
+					"-DCOREAUDIO_ENABLED",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "inapp_review/godot_plugin-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		90CAAA8F24E71FF10013969F /* Build configuration list for PBXProject "inapp_review_plugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90CAAA9B24E71FF10013969F /* Debug */,
+				90CAAA9C24E71FF10013969F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90CAAA9D24E71FF10013969F /* Build configuration list for PBXNativeTarget "inapp_review_plugin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90CAAA9E24E71FF10013969F /* Debug */,
+				90CAAA9F24E71FF10013969F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 90CAAA8C24E71FF10013969F /* Project object */;
+}

@@ -1,0 +1,26 @@
+;
+; © 2024-present https://github.com/cengiz-pz
+;
+
+[config]
+name="@pluginName@"
+binary="@pluginName@.xcframework"
+
+initialization="@iosInitializationMethod@"
+deinitialization="@iosDeinitializationMethod@"
+
+use_swift_runtime=true
+
+
+[dependencies]
+linked=[]
+embedded=[]
+system=[]
+
+capabilities=[]
+
+files=[]
+
+linker_flags=[]
+
+[plist]
