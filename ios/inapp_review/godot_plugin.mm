@@ -7,15 +7,19 @@
 #import "inapp_review_plugin.h"
 #import "core/config/engine.h"
 
-InappReviewPlugin *plugin;
+InappReviewPlugin *inapp_review_plugin;
 
 void InappReviewPlugin_init() {
-	plugin = memnew(InappReviewPlugin);
-	Engine::get_singleton()->add_singleton(Engine::Singleton("InappReviewPlugin", plugin));
+	NSLog(@"InappReviewPlugin: Initializing plugin at timestamp: %f", [[NSDate date] timeIntervalSince1970]);
+	inapp_review_plugin = memnew(InappReviewPlugin);
+	Engine::get_singleton()->add_singleton(Engine::Singleton("InappReviewPlugin", inapp_review_plugin));
+	NSLog(@"InappReviewPlugin: Singleton registered");
 }
 
 void InappReviewPlugin_deinit() {
-	if (plugin) {
-		memdelete(plugin);
+	NSLog(@"InappReviewPlugin: Deinitializing plugin");
+	if (inapp_review_plugin) {
+		memdelete(inapp_review_plugin);
+		inapp_review_plugin = nullptr;
 	}
 }

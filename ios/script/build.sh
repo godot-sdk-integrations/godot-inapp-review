@@ -218,7 +218,7 @@ function generate_godot_headers()
 
 	display_status "starting godot build to generate godot headers..."
 
-	$SCRIPT_DIR/run_with_timeout.sh -t $BUILD_TIMEOUT -c "scons platform=ios target=template_release" -d ./godot || true
+	$SCRIPT_DIR/run_with_timeout.sh -t $BUILD_TIMEOUT -c "scons platform=ios target=template_release" -d $GODOT_DIR || true
 
 	display_status "terminated godot build after $BUILD_TIMEOUT seconds..."
 }
@@ -227,7 +227,7 @@ function generate_godot_headers()
 function install_pods()
 {
 	display_status "installing pods..."
-	pod install --repo-update || true
+	pod install --repo-update --project-directory=$IOS_DIR/ || true
 }
 
 
@@ -248,21 +248,21 @@ function build_plugin()
 	mkdir -p $LIB_DIR
 
 	xcodebuild archive \
-		-project "./$PROJECT" \
+		-project "$IOS_DIR/$PROJECT" \
 		-scheme $SCHEME \
 		-archivePath "$LIB_DIR/ios_release.xcarchive" \
 		-sdk iphoneos \
 		SKIP_INSTALL=NO
 
 	xcodebuild archive \
-		-project "./$PROJECT" \
+		-project "$IOS_DIR/$PROJECT" \
 		-scheme $SCHEME \
 		-archivePath "$LIB_DIR/sim_release.xcarchive" \
 		-sdk iphonesimulator \
 		SKIP_INSTALL=NO
 
 	xcodebuild archive \
-		-project "./$PROJECT" \
+		-project "$IOS_DIR/$PROJECT" \
 		-scheme $SCHEME \
 		-archivePath "$LIB_DIR/ios_debug.xcarchive" \
 		-sdk iphoneos \
@@ -270,7 +270,7 @@ function build_plugin()
 		GCC_PREPROCESSOR_DEFINITIONS="DEBUG_ENABLED=1"
 
 	xcodebuild archive \
-		-project "./$PROJECT" \
+		-project "$IOS_DIR/$PROJECT" \
 		-scheme $SCHEME \
 		-archivePath "$LIB_DIR/sim_debug.xcarchive" \
 		-sdk iphonesimulator \
@@ -457,7 +457,7 @@ function create_zip_archive()
 	mkdir -p $tmp_directory/ios/framework
 	find $PODS_DIR -iname '*.xcframework' -type d -exec cp -r {} $tmp_directory/ios/framework \;
 
-	cp $LIB_DIR/$PLUGIN_NAME.{release,debug}.a $tmp_directory/ios/plugins
+	cp -r $FRAMEWORK_DIR/$PLUGIN_NAME.{release,debug}.xcframework $tmp_directory/ios/plugins
 
 	mkdir -p $DEST_DIR
 
