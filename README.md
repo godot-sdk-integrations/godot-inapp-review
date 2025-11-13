@@ -123,6 +123,15 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 
 ---
 
+<a name="video-tutorials"></a>
+
+# <img src="addon/icon.png" width="24"> Video Tutorials
+
+## **Google Play Reviews with the In-app Review Plugin** -- _by [Code Artist](https://www.youtube.com/@codeartist1687)_
+[![Admob Plugin on Android](https://img.youtube.com/vi/3iSd7_rE1m8/0.jpg)](https://www.youtube.com/watch?v=3iSd7_rE1m8)
+
+---
+
 <a name="credits">
 
 # <img src="addon/icon.png" width="24"> Credits
