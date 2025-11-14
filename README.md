@@ -46,7 +46,7 @@ If using both Android & iOS, ensure **same addon interface version**.
 2. **Manual**
 	- Download release from GitHub
 	- Unzip to project root
-	- Enable via **Plugins** tab
+	- Enable via **Project → Project Settings → Plugins**
 
 ---
 
@@ -97,6 +97,7 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 - **Troubleshooting:**
 	- View XCode logs while running the game for troubleshooting.
 	- See [Godot iOS Export Troubleshooting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html#troubleshooting).
+ - **Export settings:** Plugin must be enabled also in the export settings.
 
 ---
 
