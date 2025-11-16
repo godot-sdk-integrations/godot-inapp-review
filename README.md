@@ -42,11 +42,13 @@ If using both Android & iOS, ensure **same addon interface version**.
 	- Click `Download` → `Install`
 	- Install to project root, `Ignore asset root` checked
 	- Enable via **Project → Project Settings → Plugins**
-	- Ignore file conflict warnings when installing both versions
+	- For iOS, also enable via the export settings
+	- Ignore file conflict warnings for GDScript interface files when installing both versions
 2. **Manual**
 	- Download release from GitHub
 	- Unzip to project root
 	- Enable via **Project → Project Settings → Plugins**
+	- For iOS, also enable via the export settings
 
 ---
 
@@ -97,7 +99,7 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 - **Troubleshooting:**
 	- View XCode logs while running the game for troubleshooting.
 	- See [Godot iOS Export Troubleshooting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_for_ios.html#troubleshooting).
- - **Export settings:** Plugin must be enabled also in the export settings.
+	- **Export settings:** Plugin must be enabled also in the export settings.
 
 ---
 
@@ -110,17 +112,15 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 
 ---
 
-<a name="all-plugins">
-
 # <img src="addon/icon.png" width="24"> All Plugins
 
-| Plugin | Android | iOS |
-| :---: | :--- | :--- |
-| [Notification Scheduler](https://github.com/godot-sdk-integrations/godot-notification-scheduler) | ✅ | ✅ |
-| [Admob](https://github.com/godot-sdk-integrations/godot-admob) | ✅ | ✅ |
-| [Deeplink](https://github.com/godot-sdk-integrations/godot-deeplink) | ✅ | ✅ |
-| [Share](https://github.com/godot-sdk-integrations/godot-share) | ✅ | ✅ |
-| [In-App Review](https://github.com/godot-sdk-integrations/godot-inapp-review) | ✅ | ✅ |
+| Plugin | Android | iOS | Free | Open Source | License |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| [Notification Scheduler](https://github.com/godot-sdk-integrations/godot-notification-scheduler) | ✅ | ✅ | ✅ | ✅ | MIT |
+| [Admob](https://github.com/godot-sdk-integrations/godot-admob) | ✅ | ✅ | ✅ | ✅ | MIT |
+| [Deeplink](https://github.com/godot-sdk-integrations/godot-deeplink) | ✅ | ✅ | ✅ | ✅ | MIT |
+| [Share](https://github.com/godot-sdk-integrations/godot-share) | ✅ | ✅ | ✅ | ✅ | MIT |
+| [In-App Review](https://github.com/godot-sdk-integrations/godot-inapp-review) | ✅ | ✅ | ✅ | ✅ | MIT |
 
 ---
 
