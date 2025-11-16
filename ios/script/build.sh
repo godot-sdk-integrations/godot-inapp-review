@@ -3,8 +3,7 @@
 # © 2024-present https://github.com/cengiz-pz
 #
 
-set -e
-trap "sleep 1; echo" EXIT
+set -euo pipefail
 
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 IOS_DIR=$(realpath $SCRIPT_DIR/..)
@@ -13,22 +12,25 @@ ANDROID_DIR=$ROOT_DIR/android
 ADDON_DIR=$ROOT_DIR/addon
 GODOT_DIR=$IOS_DIR/godot
 IOS_CONFIG_DIR=$IOS_DIR/config
+COMMON_DIR=$ROOT_DIR/common
 PODS_DIR=$IOS_DIR/Pods
 BUILD_DIR=$IOS_DIR/build
 DEST_DIR=$BUILD_DIR/release
 FRAMEWORK_DIR=$BUILD_DIR/framework
 LIB_DIR=$BUILD_DIR/lib
 IOS_CONFIG_FILE=$IOS_CONFIG_DIR/config.properties
-COMMON_CONFIG_FILE=$ROOT_DIR/common/config.properties
+COMMON_CONFIG_FILE=$COMMON_DIR/config.properties
 
 PLUGIN_NODE_NAME=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE pluginNodeName)
 PLUGIN_NAME="${PLUGIN_NODE_NAME}Plugin"
 PLUGIN_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE pluginVersion)
 IOS_INITIALIZATION_METHOD=$($SCRIPT_DIR/get_config_property.sh -f $IOS_CONFIG_FILE initialization_method)
 IOS_DEINITIALIZATION_METHOD=$($SCRIPT_DIR/get_config_property.sh -f $IOS_CONFIG_FILE deinitialization_method)
+IOS_PLATFORM_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $IOS_CONFIG_FILE platform_version)
 PLUGIN_PACKAGE_NAME=$($SCRIPT_DIR/get_gradle_property.sh pluginPackageName $ANDROID_DIR/config.gradle.kts)
 ANDROID_DEPENDENCIES=$($SCRIPT_DIR/get_android_dependencies.sh)
 GODOT_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE godotVersion)
+GODOT_RELEASE_TYPE=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE releaseType)
 IOS_FRAMEWORKS=()
 while IFS= read -r line; do
 	IOS_FRAMEWORKS+=("$line")
@@ -71,29 +73,28 @@ function display_help()
 	echo_yellow "If plugin version is not set with the -z option, then Godot version will be used."
 	echo
 	$ROOT_DIR/script/echocolor.sh -Y "Syntax:"
-	echo_yellow "	$0 [-a|A <godot version>|c|g|G <godot version>|h|H|i|p|P|t <timeout>|z <version>]"
+	echo_yellow "	$0 [-a|A|c|g|G|h|H|i|p|P|t <timeout>|z]"
 	echo
 	$ROOT_DIR/script/echocolor.sh -Y "Options:"
 	echo_yellow "	a	generate godot headers and build plugin"
-	echo_yellow "	A	download specified godot version, generate godot headers, and"
+	echo_yellow "	A	download configured godot version, generate godot headers, and"
 	echo_yellow "	 	build plugin"
 	echo_yellow "	b	build plugin"
 	echo_yellow "	c	remove any existing plugin build"
 	echo_yellow "	g	remove godot directory"
-	echo_yellow "	G	download the godot version specified in the option argument"
-	echo_yellow "	 	into godot directory"
+	echo_yellow "	G	download the configured godot version into godot directory"
 	echo_yellow "	h	display usage information"
 	echo_yellow "	H	generate godot headers"
 	echo_yellow "	i	ignore if an unsupported godot version selected and continue"
 	echo_yellow "	p	remove pods and pod repo trunk"
 	echo_yellow "	P	install pods"
 	echo_yellow "	t	change timeout value for godot build"
-	echo_yellow "	z	create zip archive with given version added to the file name"
+	echo_yellow "	z	create zip archive, include configured version in the file name"
 	echo
 	$ROOT_DIR/script/echocolor.sh -Y "Examples:"
 	echo_yellow "	* clean existing build, remove godot, and rebuild all"
-	echo_yellow "		$> $0 -cgA 4.2"
-	echo_yellow "		$> $0 -cgpG 4.2 -HPbz 1.0"
+	echo_yellow "		$> $0 -cgA"
+	echo_yellow "		$> $0 -cgpGHPbz"
 	echo
 	echo_yellow "	* clean existing build, remove pods and pod repo trunk, and rebuild plugin"
 	echo_yellow "		$> $0 -cpPb"
@@ -102,9 +103,9 @@ function display_help()
 	echo_yellow "		$> $0 -ca"
 	echo
 	echo_yellow "	* clean existing build and rebuild plugin with custom plugin version"
-	echo_yellow "		$> $0 -cHbz 1.0"
+	echo_yellow "		$> $0 -cHbz"
 	echo
-	echo_yellow "	* clean existing build and rebuild plugin with custom build timeout"
+	echo_yellow "	* clean existing build and rebuild plugin with custom build-header timeout"
 	echo_yellow "		$> $0 -cHbt 15"
 	echo
 }
@@ -191,20 +192,56 @@ function remove_pods()
 
 function download_godot()
 {
-	if [[ -d "$GODOT_DIR" ]]
-	then
-		display_error "Error: $GODOT_DIR directory already exists. Won't download."
-		exit 1
-	fi
+    if [[ -d "$GODOT_DIR" ]]; then
+        display_error "Error: $GODOT_DIR directory already exists. Remove it first or use a different directory."
+        exit 1
+    fi
 
-	display_status "downloading godot version $GODOT_VERSION..."
+    local filename="godot-${GODOT_VERSION}-${GODOT_RELEASE_TYPE}.tar.xz"
+    local release_url="https://github.com/godotengine/godot-builds/releases/download/${GODOT_VERSION}-${GODOT_RELEASE_TYPE}/${filename}"
+    local archive_path="${GODOT_DIR}.tar.xz"
+    local temp_extract_dir=$(mktemp -d)
 
-	$SCRIPT_DIR/fetch_git_repo.sh -t $GODOT_VERSION-stable https://github.com/godotengine/godot.git $GODOT_DIR
+    display_status "Downloading Godot ${GODOT_VERSION}-${GODOT_RELEASE_TYPE} (official pre-built binary)..."
+    echo_blue "URL: $release_url"
 
-	if [[ -d "$GODOT_DIR" ]]
-	then
-		echo "$GODOT_VERSION" > $GODOT_DIR/GODOT_VERSION
-	fi
+    # Check required tools
+    if ! command -v curl >/dev/null 2>&1; then
+        display_error "Error: curl is required to download the archive."
+        exit 1
+    fi
+    if ! command -v tar >/dev/null 2>&1; then
+        display_error "Error: tar is required to extract the archive."
+        exit 1
+    fi
+
+    # Download the .tar.xz archive
+    if ! curl -L --fail --progress-bar -o "$archive_path" "$release_url"; then
+        rm -f "$archive_path"
+        display_error "Failed to download Godot binary from:\n  $release_url\nPlease verify that GODOT_VERSION (${GODOT_VERSION}) and GODOT_RELEASE_TYPE (${GODOT_RELEASE_TYPE}) are correct."
+        exit 1
+    fi
+
+    display_status "Extracting $filename ..."
+    if ! tar -xaf "$archive_path" -C "$temp_extract_dir" --strip-components=1; then
+        rm -f "$archive_path"
+        rm -rf "$temp_extract_dir"
+        display_error "Failed to extract the .tar.xz archive."
+        exit 1
+    fi
+
+    # Move extracted contents to final destination
+    mkdir -p "$GODOT_DIR"
+    mv "$temp_extract_dir"/* "$GODOT_DIR"/
+
+    # Cleanup
+    rm -f "$archive_path"
+    rm -rf "$temp_extract_dir"
+
+    # Write version marker for the rest of the build system
+    echo "$GODOT_VERSION" > "$GODOT_DIR/GODOT_VERSION"
+
+    echo_green "Godot ${GODOT_VERSION}-${GODOT_RELEASE_TYPE} successfully downloaded and extracted to $GODOT_DIR"
 }
 
 
@@ -233,6 +270,18 @@ function install_pods()
 
 function build_plugin()
 {
+	if [[ ! -d "$PODS_DIR" ]]
+	then
+		display_error "Error: Pods directory does not exist. Run 'pod install' first."
+		exit 1
+	fi
+
+	if [[ ! -d "$GODOT_DIR" ]]
+	then
+		display_error "Error: $GODOT_DIR directory does not exist. Can't build plugin."
+		exit 1
+	fi
+
 	if [[ ! -f "$GODOT_DIR/GODOT_VERSION" ]]
 	then
 		display_error "Error: godot wasn't downloaded properly. Can't build plugin."
@@ -304,7 +353,8 @@ function build_plugin()
 }
 
 
-function merge_string_array() {
+function merge_string_array()
+{
 	local arr=("$@")	# Accept array as input
 	printf "%s" "${arr[0]}"
 	for ((i=1; i<${#arr[@]}; i++)); do
@@ -313,19 +363,15 @@ function merge_string_array() {
 }
 
 
-function replace_extra_properties() {
+function replace_extra_properties()
+{
 	local file_path="$1"
-	local -a prop_array=("${@:2}")
+	shift
+	local prop_array=("$@")
 
-	# Check if file exists and is readable
-	if [[ ! -f "$file_path" || ! -r "$file_path" ]]; then
-		display_error "Error: File '$file_path' does not exist or is not readable"
-		exit 1
-	fi
-
-	# Check if file is empty
+	# Check if file exists and is not empty
 	if [[ ! -s "$file_path" ]]; then
-		echo_blue "Debug: File is empty, no replacements possible"
+		display_error "Error: File '$file_path' does not exist or is empty, skipping replacements"
 		return 0
 	fi
 
@@ -392,10 +438,10 @@ function create_zip_archive()
 {
 	local zip_file_name="$PLUGIN_NAME-iOS-v$PLUGIN_VERSION.zip"
 
-	if [[ -e "$BUILD_DIR/release/$zip_file_name" ]]
+	if [[ -e "$DEST_DIR/$zip_file_name" ]]
 	then
 		display_warning "deleting existing $zip_file_name file..."
-		rm $BUILD_DIR/release/$zip_file_name
+		rm $DEST_DIR/$zip_file_name
 	fi
 
 	local tmp_directory=$(mktemp -d)
@@ -430,6 +476,7 @@ function create_zip_archive()
 			ESCAPED_ANDROID_DEPENDENCIES=$(printf '%s' "$ANDROID_DEPENDENCIES" | sed 's/[\/&]/\\&/g')
 			ESCAPED_IOS_INITIALIZATION_METHOD=$(printf '%s' "$IOS_INITIALIZATION_METHOD" | sed 's/[\/&]/\\&/g')
 			ESCAPED_IOS_DEINITIALIZATION_METHOD=$(printf '%s' "$IOS_DEINITIALIZATION_METHOD" | sed 's/[\/&]/\\&/g')
+			ESCAPED_IOS_PLATFORM_VERSION=$(printf '%s' "$IOS_PLATFORM_VERSION" | sed 's/[\/&]/\\&/g')
 			ESCAPED_IOS_FRAMEWORKS=$(merge_string_array "${IOS_FRAMEWORKS[@]}" | sed 's/[\/&]/\\&/g')
 			ESCAPED_IOS_EMBEDDED_FRAMEWORKS=$(merge_string_array "${IOS_EMBEDDED_FRAMEWORKS[@]}" | sed 's/[\/&]/\\&/g')
 			ESCAPED_IOS_LINKER_FLAGS=$(merge_string_array "${IOS_LINKER_FLAGS[@]}" | sed 's/[\/&]/\\&/g')
@@ -442,12 +489,15 @@ function create_zip_archive()
 				s|@androidDependencies@|$ESCAPED_ANDROID_DEPENDENCIES|g;
 				s|@iosInitializationMethod@|$ESCAPED_IOS_INITIALIZATION_METHOD|g;
 				s|@iosDeinitializationMethod@|$ESCAPED_IOS_DEINITIALIZATION_METHOD|g;
+				s|@iosPlatformVersion@|$ESCAPED_IOS_PLATFORM_VERSION|g;
 				s|@iosFrameworks@|$ESCAPED_IOS_FRAMEWORKS|g;
 				s|@iosEmbeddedFrameworks@|$ESCAPED_IOS_EMBEDDED_FRAMEWORKS|g;
 				s|@iosLinkerFlags@|$ESCAPED_IOS_LINKER_FLAGS|g
 			" "$file"
 
-			replace_extra_properties $file ${EXTRA_PROPERTIES[@]}
+			if [[ ${#EXTRA_PROPERTIES[@]} -gt 0 ]]; then
+				replace_extra_properties "$file" "${EXTRA_PROPERTIES[@]}"
+			fi
 		done
 	else
 		display_error "Error: '$ADDON_DIR' not found."
@@ -468,7 +518,7 @@ function create_zip_archive()
 }
 
 
-while getopts "aAbcgG:hHipPt:z" option; do
+while getopts "aAbcgGhHipPt:z" option; do
 	case $option in
 		h)
 			display_help
