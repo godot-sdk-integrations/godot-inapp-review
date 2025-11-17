@@ -29,7 +29,7 @@ In-app Review Plugin provides access to in-app review functionality for Google P
 
 ---
 
-<a name="installation">
+<a name="installation"></a>
 
 ## <img src="addon/icon.png" width="20"> Installation
 
@@ -52,7 +52,7 @@ If using both Android & iOS, ensure **same addon interface version**.
 
 ---
 
-<a name="usage">
+<a name="usage"></a>
 
 ## <img src="addon/icon.png" width="20"> Usage
 Add an `InappReview` node to your scene and follow the following steps:
@@ -65,14 +65,14 @@ Add an `InappReview` node to your scene and follow the following steps:
 
 ---
 
-<a name="demo">
+<a name="demo"></a>
 
 ## <img src="addon/icon.png" width="20"> Demo
 The demo app's only purpose is to provide sample code. Since the demo app is not registered with the Google Play store or App Store, the in-app review dialog will not be displayed.
 	
 ---
 
-<a name="signals">
+<a name="signals"></a>
 
 ## <img src="addon/icon.png" width="20"> Signals
 
@@ -83,7 +83,7 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 
 ---
 
-<a name="platform-specific-notes">
+<a name="platform-specific-notes"></a>
 
 ## <img src="addon/icon.png" width="20"> Platform-Specific Notes
 
@@ -103,7 +103,7 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 
 ---
 
-<a name="links">
+<a name="links"></a>
 
 # <img src="addon/icon.png" width="20"> Links
 
@@ -133,7 +133,7 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 
 ---
 
-<a name="credits">
+<a name="credits"></a>
 
 # <img src="addon/icon.png" width="24"> Credits
 
@@ -145,11 +145,22 @@ Original repository: [Godot In-app Review Plugin](godot-sdk-integrations/godot-i
 
 ---
 
-<a name="contributing">
+<a name="contributing"></a>
 
 # <img src="addon/icon.png" width="24"> Contributing
 
 This section provides information on how to build the plugin for contributors.
+
+---
+
+## Common Configuration
+
+The `common/config.properties` file allows for the configuration of:
+
+- The name of the main plugin node in Godot
+- Plugin version
+- Version of Godot that the plugin depends on
+- Release type of the Godot version to download (ie. stable, dev6, or beta3)
 
 ---
 
@@ -162,20 +173,41 @@ This section provides information on how to build the plugin for contributors.
 
 ---
 
+### iOS Configuration
+
+Among other settings, the `ios/config/config.properties` file allows for the configuration of:
+
+- The target iOS platform version
+- Valid/compatible Godot versions
+
+---
+
 ### Build
 
-- Run `./script/build.sh -A <godot version>` initially to run a full build
-- Run `./script/build.sh -cgA <godot version>` to clean, redownload Godot, and rebuild
-- Run `./script/build.sh -ca` to clean and build without redownloading Godot
-- Run `./script/build.sh -cb -z4.0` to clean and build plugin without redownloading Godot and package in a zip archive as version 4.0
-- Run `./script/build.sh -h` for more information on the build script
+#### Build All and Create Release Archives for Both Platforms
+
+- Run `./script/build.sh -R` -- creates all 3 archives in the `./release` directory
+
+#### iOS Builds
+iOS build script can be run directly as shown in the examples below.
+
+- Run `./ios/script/build.sh -A` initially to run a full build
+- Run `./ios/script/build.sh -cgA` to clean, redownload Godot, and rebuild
+- Run `./ios/script/build.sh -ca` to clean and build without redownloading Godot
+- Run `./ios/script/build.sh -cbz` to clean and build plugin without redownloading Godot and package in a zip archive
+- Run `./ios/script/build.sh -h` for more information on the build script
+
+Alternatively, iOS build script can be run through the root-level build script as follows
+
+- Run `./script/build.sh -i -- -cbz` to clean and build plugin without redownloading Godot and package in a zip archive
+- Run `./script/build.sh -i -- -h` for more information on the build script
 
 ___
 
 ## <img src="addon/icon.png" width="20"> Install Script
 
-- Run `./script/install.sh -t <target directory> -z <path to zip file>` install plugin to a Godot project.
-- Example `./script/install.sh -t demo -z build/release/DeeplinkPlugin-v4.0.zip` to install to demo app.
+- Run `./ios/script/install.sh -t <target directory> -z <path to zip file>` install plugin to a Godot project.
+- Example `./ios/script/install.sh -t demo -z build/release/ThisPlugin-v4.0.zip` to install to demo app.
 
 ___
 
@@ -187,6 +219,15 @@ Library archives will be created in the `build/release` directory.
 
 ## <img src="addon/icon.png" width="20"> Android
 
+---
+
+### Android Configuration
+
+The `android/gradle/lib.versions.toml` contains:
+
+- Gradle plugins and their versions
+- Library dependencies and their versions
+
 ### Build
 
 **Options:**
@@ -195,4 +236,4 @@ Library archives will be created in the `build/release` directory.
 	- Run **packageDistribution** task to create release archive
 2. Use project-root-level **build.sh** script
 	- `./script/build.sh -ca` - clean existing build, do a debug build for Android
-	- `./script/build.sh -carz` - clean existing build, do a release build for Android, and create archive
+	- `./script/build.sh -carz` - clean existing build, do a release build for Android, and create release archive in the `android/<plugin-name>/build/dist` directory
