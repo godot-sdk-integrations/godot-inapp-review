@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		515DBA0925EE9E1E00187A4B /* SwiftClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515DBA0825EE9E1E00187A4B /* SwiftClass.swift */; };
+		515DBA0925EE9E1E00187A4B /* InappReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 515DBA0825EE9E1E00187A4B /* InappReview.swift */; };
 		90CAAA9924E71FF10013969F /* godot_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAA9824E71FF10013969F /* godot_plugin.mm */; };
 		90CAAAA424E724C50013969F /* inapp_review_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAAA324E724C50013969F /* inapp_review_plugin.mm */; };
 		94A1B0B2910D06DA0F4D3D3C /* Pods_inapp_review_plugin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */; };
@@ -29,7 +29,7 @@
 		1A3D1E30D9DC57319C20B62B /* Pods-godot_plugin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-godot_plugin.release.xcconfig"; path = "Target Support Files/Pods-godot_plugin/Pods-godot_plugin.release.xcconfig"; sourceTree = "<group>"; };
 		380C444E6383B0C8ACA7CA7D /* Pods_inapp_review_plugin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_inapp_review_plugin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		403D7C7BCFBA671DEF15AE95 /* Pods-godot_plugin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-godot_plugin.debug.xcconfig"; path = "Target Support Files/Pods-godot_plugin/Pods-godot_plugin.debug.xcconfig"; sourceTree = "<group>"; };
-		515DBA0825EE9E1E00187A4B /* SwiftClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftClass.swift; sourceTree = "<group>"; };
+		515DBA0825EE9E1E00187A4B /* InappReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InappReview.swift; sourceTree = "<group>"; };
 		90CAAA9424E71FF10013969F /* libinapp_review_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libinapp_review_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90CAAA9724E71FF10013969F /* godot_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = godot_plugin.h; sourceTree = "<group>"; };
 		90CAAA9824E71FF10013969F /* godot_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = godot_plugin.mm; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 				90CAAA9824E71FF10013969F /* godot_plugin.mm */,
 				90CAAAA524E724D00013969F /* inapp_review_plugin.h */,
 				90CAAAA324E724C50013969F /* inapp_review_plugin.mm */,
-				515DBA0825EE9E1E00187A4B /* SwiftClass.swift */,
+				515DBA0825EE9E1E00187A4B /* InappReview.swift */,
 			);
 			path = inapp_review;
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90CAAAA424E724C50013969F /* inapp_review_plugin.mm in Sources */,
-				515DBA0925EE9E1E00187A4B /* SwiftClass.swift in Sources */,
+				515DBA0925EE9E1E00187A4B /* InappReview.swift in Sources */,
 				90CAAA9924E71FF10013969F /* godot_plugin.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

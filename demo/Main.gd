@@ -22,8 +22,12 @@ func _ready() -> void:
 		_active_texture_rect = _android_texture_rect
 
 
-func _on_button_pressed() -> void:
+func _on_launch_review_button_pressed() -> void:
 	inapp_review.generate_review_info()
+
+
+func _on_get_review_url_button_pressed() -> void:
+	inapp_review.get_app_review_url()
 
 
 func _on_inapp_review_review_info_generated() -> void:
@@ -42,6 +46,14 @@ func _on_inapp_review_review_flow_launched() -> void:
 
 func _on_inapp_review_review_flow_launch_failed() -> void:
 	_print_to_screen("In-app review flow launch failed!", true)
+
+
+func _on_inapp_review_app_review_url_ready(a_url: String) -> void:
+	_print_to_screen("App review URL: %s" % a_url)
+
+
+func _on_inapp_review_get_app_review_url_failed() -> void:
+	_print_to_screen("Failed to get app review URL", true)
 
 
 func _print_to_screen(a_message: String, a_is_error: bool = false) -> void:
