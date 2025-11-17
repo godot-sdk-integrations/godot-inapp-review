@@ -20,6 +20,7 @@ class InappReviewPlugin : public Object {
 public:
 	void generate_review_info();
 	void launch_review_flow();
+	void get_app_review_url();
 
 	InappReviewPlugin();
 	~InappReviewPlugin();

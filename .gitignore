@@ -27,6 +27,7 @@ local.properties
 *.d
 *.o
 *.dblite
+xcuserdata/
 Pods/
 ios/godot/
 

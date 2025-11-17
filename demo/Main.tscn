@@ -43,12 +43,16 @@ horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 10
+theme_override_constants/separation = 20
 
-[node name="Button" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
+[node name="LaunchReviewButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(375, 0)
 layout_mode = 2
 text = "Launch Review"
+
+[node name="GetReviewUrlButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Get Review URL"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 300)
@@ -57,7 +61,10 @@ layout_mode = 2
 [node name="InappReview" type="Node" parent="."]
 script = ExtResource("2_0jlfk")
 
-[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer/LaunchReviewButton" to="." method="_on_launch_review_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer/GetReviewUrlButton" to="." method="_on_get_review_url_button_pressed"]
+[connection signal="app_review_url_ready" from="InappReview" to="." method="_on_inapp_review_app_review_url_ready"]
+[connection signal="get_app_review_url_failed" from="InappReview" to="." method="_on_inapp_review_get_app_review_url_failed"]
 [connection signal="review_flow_launch_failed" from="InappReview" to="." method="_on_inapp_review_review_flow_launch_failed"]
 [connection signal="review_flow_launched" from="InappReview" to="." method="_on_inapp_review_review_flow_launched"]
 [connection signal="review_info_generated" from="InappReview" to="." method="_on_inapp_review_review_info_generated"]

@@ -37,6 +37,8 @@ public class InappReviewPlugin extends GodotPlugin {
 	private static final String SIGNAL_NAME_REVIEW_INFO_GENERATION_FAILED = "review_info_generation_failed";
 	private static final String SIGNAL_NAME_REVIEW_FLOW_LAUNCHED = "review_flow_launched";
 	private static final String SIGNAL_NAME_REVIEW_FLOW_LAUNCH_FAILED = "review_flow_launch_failed";
+	private static final String SIGNAL_NAME_APP_REVIEW_URL_READY = "app_review_url_ready";
+	private static final String SIGNAL_NAME_GET_APP_REVIEW_URL_FAILED = "get_app_review_url_failed";
 
 	private Activity activity;
 	private ReviewManager manager;
@@ -93,6 +95,17 @@ public class InappReviewPlugin extends GodotPlugin {
 		}
 	}
 
+	@UsedByGodot
+	public void get_app_review_url() {
+		try {
+			String packageName = activity.getApplicationContext().getPackageName();
+			emitSignal(SIGNAL_NAME_APP_REVIEW_URL_READY, "https://play.google.com/store/apps/details?id=" + packageName);
+		} catch (Exception e) {
+			Log.e(LOG_TAG, "get_app_review_url() failed due to " + e.getMessage());
+			emitSignal(SIGNAL_NAME_GET_APP_REVIEW_URL_FAILED);
+		}
+	}
+
 	@NonNull
 	@Override
 	public String getPluginName() {
@@ -108,6 +121,8 @@ public class InappReviewPlugin extends GodotPlugin {
 		signals.add(new SignalInfo(SIGNAL_NAME_REVIEW_INFO_GENERATION_FAILED));
 		signals.add(new SignalInfo(SIGNAL_NAME_REVIEW_FLOW_LAUNCHED));
 		signals.add(new SignalInfo(SIGNAL_NAME_REVIEW_FLOW_LAUNCH_FAILED));
+		signals.add(new SignalInfo(SIGNAL_NAME_APP_REVIEW_URL_READY, String.class));
+		signals.add(new SignalInfo(SIGNAL_NAME_GET_APP_REVIEW_URL_FAILED));
 
 		return signals;
 	}
