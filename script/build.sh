@@ -17,6 +17,7 @@ COMMON_CONFIG_FILE=$ROOT_DIR/common/config.properties
 PLUGIN_NODE_NAME=$($ROOT_DIR/ios/script/get_config_property.sh -f $COMMON_CONFIG_FILE pluginNodeName)
 PLUGIN_NAME="${PLUGIN_NODE_NAME}Plugin"
 PLUGIN_VERSION=$($ROOT_DIR/ios/script/get_config_property.sh -f $COMMON_CONFIG_FILE pluginVersion)
+PLUGIN_MODULE_NAME=$($ROOT_DIR/ios/script/get_config_property.sh -f $COMMON_CONFIG_FILE pluginModuleName)
 
 do_clean=false
 do_build_android=false
@@ -166,7 +167,13 @@ function create_multi_platform_archive()
 		cp -r $DEMO_DIR/ios/plugins/* $tmp_directory/ios/plugins
 
 		mkdir -p $tmp_directory/ios/framework
-		cp -r $DEMO_DIR/ios/framework/* $tmp_directory/ios/framework
+
+		# Check if the directory exists AND find can locate at least one entry inside
+		if [ -d "$DEMO_DIR/ios/framework" ] && find "$DEMO_DIR/ios/framework" -mindepth 1 -print -quit 2>/dev/null | grep -q .; then
+			cp -r "$DEMO_DIR/ios/framework/"* "$tmp_directory/ios/framework"
+		else
+			display_warning "Skipping copy: $DEMO_DIR/ios/framework is empty or does not exist."
+		fi
 
 		display_step "creating $zip_file_name file in $DEST_DIR..."
 		pushd $tmp_directory > /dev/null
@@ -269,7 +276,7 @@ then
 	create_multi_platform_archive
 
 	display_step "Copying Android release archive"
-	cp $ROOT_DIR/android/admob/build/dist/$PLUGIN_NAME-Android-v$PLUGIN_VERSION.zip $DEST_DIR
+	cp $ROOT_DIR/android/${PLUGIN_MODULE_NAME}/build/dist/$PLUGIN_NAME-Android-v$PLUGIN_VERSION.zip $DEST_DIR
 
 	display_step "Copying iOS release archive"
 	cp $ROOT_DIR/ios/build/release/$PLUGIN_NAME-iOS-v$PLUGIN_VERSION.zip $DEST_DIR

@@ -44,7 +44,7 @@ android {
 
 	buildToolsVersion = libs.versions.buildTools.get()
 
-	// ✅ Force AAR filenames to match original case and format
+	// Force AAR filenames to match original case and format
 	libraryVariants.all {
 		outputs.all {
 			val outputImpl = this as LibraryVariantOutputImpl

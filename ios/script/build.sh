@@ -24,6 +24,7 @@ COMMON_CONFIG_FILE=$COMMON_DIR/config.properties
 PLUGIN_NODE_NAME=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE pluginNodeName)
 PLUGIN_NAME="${PLUGIN_NODE_NAME}Plugin"
 PLUGIN_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE pluginVersion)
+PLUGIN_MODULE_NAME=$($SCRIPT_DIR/get_config_property.sh -f $COMMON_CONFIG_FILE pluginModuleName)
 IOS_INITIALIZATION_METHOD=$($SCRIPT_DIR/get_config_property.sh -f $IOS_CONFIG_FILE initialization_method)
 IOS_DEINITIALIZATION_METHOD=$($SCRIPT_DIR/get_config_property.sh -f $IOS_CONFIG_FILE deinitialization_method)
 IOS_PLATFORM_VERSION=$($SCRIPT_DIR/get_config_property.sh -f $IOS_CONFIG_FILE platform_version)
@@ -288,10 +289,10 @@ function build_plugin()
 		exit 1
 	fi
 
-	SCHEME=${1:-inapp_review_plugin}
-	PROJECT=${2:-inapp_review_plugin.xcodeproj}
-	OUT=InappReviewPlugin
-	CLASS=InappReviewPlugin
+	SCHEME=${1:-${PLUGIN_MODULE_NAME}_plugin}
+	PROJECT=${2:-${PLUGIN_MODULE_NAME}_plugin.xcodeproj}
+	OUT=${PLUGIN_NAME}
+	CLASS=${PLUGIN_NAME}
 
 	mkdir -p $FRAMEWORK_DIR
 	mkdir -p $LIB_DIR

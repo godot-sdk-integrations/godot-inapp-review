@@ -22,4 +22,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "godot-inapp-review-plugin"
-include(":inappreview")
+include(":inapp_review")
