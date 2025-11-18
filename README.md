@@ -89,7 +89,7 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 
 ### Android
 - **Build:** [Create custom Android gradle build](https://docs.godotengine.org/en/stable/tutorials/export/android_gradle_build.html).
-- **Registration:** App must be registered with the Google Play.
+- **Registration:** App must be registered with the Google Play Store.
 - **Troubleshooting:**
   - Logs: `adb logcat | grep 'godot'` (Linux), `adb.exe logcat | select-string "godot"` (Windows)
   - _No review dialog shown_: Check [Google Play quotas](https://developer.android.com/guide/playcore/in-app-review#quotas)
@@ -111,6 +111,8 @@ The demo app's only purpose is to provide sample code. Since the demo app is not
 - [AssetLib Entry iOS](https://godotengine.org/asset-library/asset/2906)
 
 ---
+
+<a name="all-plugins"></a>
 
 # <img src="addon/icon.png" width="24"> All Plugins
 
